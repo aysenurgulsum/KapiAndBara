@@ -5,10 +5,15 @@ public class FinishZone : MonoBehaviour
 {
     public string nextSceneName = "LevelCompleteScene"; // sahne adını Unity'de sen oluşturacaksın
 
+
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            LevelTracker.LastPlayedLevel = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene("CompleteScene");
+
             // Skoru LevelComplete ekranına aktar
             PlayerPrefs.SetInt("LevelScore", ScoreManager.instance.GetScore());
 

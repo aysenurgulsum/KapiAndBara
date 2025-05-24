@@ -2,33 +2,44 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class LevelCompleteManager : MonoBehaviour
 {
-    public Image[] stars; // Inspector'dan 3 yıldız image atayacaksın
+    public Image[] stars;
+    public Sprite fullStarSprite;
+    public Sprite emptyStarSprite;
     public TextMeshProUGUI scoreText;
-    public int oneStarThreshold = 5;
-    public int twoStarThreshold = 10;
-    public int threeStarThreshold = 15;
+    public int oneStarThreshold = 50;
+    public int twoStarThreshold = 80;
+    public int threeStarThreshold = 110;
 
     void Start()
     {
+        string levelName = LevelTracker.LastPlayedLevel;
         int score = PlayerPrefs.GetInt("LevelScore", 0);
-        scoreText.text = "Toplanan Skor: " + score.ToString();
+        Debug.Log("LevelScore: " + score);
+        scoreText.text = "Skor: " + score.ToString();
 
-        // Yıldız hesaplama
         int starCount = 0;
         if (score >= oneStarThreshold) starCount = 1;
         if (score >= twoStarThreshold) starCount = 2;
         if (score >= threeStarThreshold) starCount = 3;
 
-        // Yıldızları göster
+        PlayerPrefs.SetInt("Stars_" + levelName, starCount);
+        PlayerPrefs.Save();
+
+        ShowStars(starCount);
+    }
+
+    void ShowStars(int starCount)
+    {
         for (int i = 0; i < stars.Length; i++)
         {
-            stars[i].enabled = i < starCount; // İlk "starCount" kadarını göster
+            if (stars[i] != null)
+            {
+                stars[i].enabled = true;
+                stars[i].sprite = i < starCount ? fullStarSprite : emptyStarSprite;
+            }
         }
     }
+
 }
-
-
-
