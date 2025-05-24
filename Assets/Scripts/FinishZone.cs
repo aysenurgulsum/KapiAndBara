@@ -12,7 +12,7 @@ public class FinishZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             LevelTracker.LastPlayedLevel = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene("CompleteScene");
+            SceneManager.LoadScene("LevelCompleteScene");
 
             // Skoru LevelComplete ekranına aktar
             PlayerPrefs.SetInt("LevelScore", ScoreManager.instance.GetScore());

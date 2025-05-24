@@ -33,9 +33,9 @@ public class PlayerMovement : MonoBehaviour
             
             // YÖNE GÖRE DÖNME
             if (move > 0)
-                transform.localScale = new Vector3(1f, 1f, 1f); // sağa bak
+                transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); // sağa bak
             else if (move < 0)
-                transform.localScale = new Vector3(-1f, 1f, 1f); // sola bak
+                transform.localScale = new Vector3(-0.1f, 0.1f, 0.1f); // sola bak
 
             if (Input.GetKeyDown(jumpKey) && isGrounded)
             {
