@@ -14,6 +14,8 @@ public class ScoreManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+        else
+            Destroy(gameObject);
     }
 
     public void AddScore(int amount)
@@ -26,5 +28,10 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
             scoreText.text = "Skor: " + score;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }
